@@ -9,11 +9,11 @@ import { UserModule } from '../user/user.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'test',
+      host: process.env.DATABASE_HOST || 'localhost',
+      port: parseInt(process.env.DATABASE_PORT) || 3306,
+      username: process.env.DATABASE_USER || 'root',
+      password: process.env.DATABASE_PASSWORD || 'rootpassword',
+      database: process.env.DATABASE_NAME || 'testdb',
       entities: [User],
       synchronize: true,
     }),
